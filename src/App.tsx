@@ -12,13 +12,9 @@ const App = () => {
         </GridItem>
         {/* Aside should only be visible for larger devices */}
         <Show>
-          <GridItem area="aside" bg="gold">
-            Aside
-          </GridItem>
+          <GridItem area="aside">Aside</GridItem>
         </Show>
-        <GridItem area="main" bg="dodgerblue">
-          Main
-        </GridItem>
+        <GridItem area="main">Main</GridItem>
       </Grid>
     </div>
   );
