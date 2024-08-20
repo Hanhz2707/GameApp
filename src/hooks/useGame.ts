@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import apiClient from "../services/apiClient";
 import { CanceledError } from "axios";
 
-interface Game {
+export interface Game {
     id: number;
     name: string;
+    background_image: string;
   }
   // Define shape of the response from the API
   interface FetchGamesResponse {
@@ -30,7 +31,7 @@ const useGame = () => {
         setError(err.message)});
 
     // return a cleanup function 
-    // This will bring error since we did not check for canceled request
+    // This will bring error since we did not check for canceled request (resolved)
     return () => controller.abort();
   }, []);
 
