@@ -1,29 +1,9 @@
-import React, { useEffect, useState } from "react";
-import apiClient from "../services/apiClient";
 import { Text } from "@chakra-ui/react";
-
-interface Game {
-  id: number;
-  name: string;
-}
-// Define shape of the response from the API
-interface FetchGamesResponse {
-  count: number;
-  results: Game[];
-}
+import useGame from "../hooks/useGame";
 
 const GameGrid = () => {
-  // Telling TS this is an array of Game
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    // Provide a generic type argument to get method <> so we know what shape the response will have
-    apiClient
-      .get<FetchGamesResponse>("/games")
-      .then((res) => setGames(res.data.results))
-      .catch((err) => setError(err.message));
-  });
+  // Creating custom hook to fetch games
+  const { games, error } = useGame();
 
   return (
     <div>
