@@ -4,15 +4,15 @@ import { CanceledError } from "axios";
 
 
 
-interface FetchResponse<T> {
+interface FetchResponse<Type> {
     count: number;
-    results: T[];
+    results: Type[];
 }
 
-const useData = <T>(endpoint: string) => {
+const useData = <Type>(endpoint: string) => {
 // Telling TS this is an array of Game
 // Using generic type T to make the hook reusable
-  const [data, setData] = useState<T[]>([]);
+  const [data, setData] = useState<Type[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,7 +23,7 @@ const useData = <T>(endpoint: string) => {
     // Provide a generic type argument to get method <> so we know what shape the response will have
     setIsLoading(true);
     apiClient
-      .get<FetchResponse<T>>(endpoint, { signal: controller.signal })
+      .get<FetchResponse<Type>>(endpoint, { signal: controller.signal })
       .then((res) => {
         setData(res.data.results);
         setIsLoading(false);
@@ -36,7 +36,7 @@ const useData = <T>(endpoint: string) => {
     // return a cleanup function 
     // This will bring error since we did not check for canceled request (resolved)
     return () => controller.abort();
-  }, []);
+  }, [endpoint]);
 
   return { data, error, isLoading };
 };

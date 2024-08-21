@@ -20,7 +20,7 @@ export interface Game {
   //   results: Game[];
   // }
 
-const useGame = () => useData<Game[]>("/games");
+const useGame = () => useData<Game>("/games");
 
 //   {
 //   // Telling TS this is an array of Game
