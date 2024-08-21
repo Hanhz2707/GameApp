@@ -6,7 +6,7 @@ import GameCardContainer from "./GameCardContainer";
 
 const GameGrid = () => {
   // Creating custom hook to fetch games
-  const { games, error, isLoading } = useGame();
+  const { data, error, isLoading } = useGame();
   const skeleton = [1, 2, 3, 4, 5, 6];
 
   return (
@@ -23,7 +23,7 @@ const GameGrid = () => {
               <GameCardSkeleton key={i} />
             </GameCardContainer>
           ))}
-        {games.map((game) => (
+        {data.map((game) => (
           <GameCardContainer>
             <GameCard key={game.id} game={game} />
           </GameCardContainer>
