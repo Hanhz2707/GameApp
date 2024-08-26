@@ -3,10 +3,15 @@ import useGame from "../hooks/useGame";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
+import { Genres } from "../hooks/useGenres";
 
-const GameGrid = () => {
+interface Props {
+  selectedGenre: Genres | null;
+}
+
+const GameGrid = ({ selectedGenre }: Props) => {
   // Creating custom hook to fetch games
-  const { data, error, isLoading } = useGame();
+  const { data, error, isLoading } = useGame(selectedGenre);
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
   return (
