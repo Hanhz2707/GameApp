@@ -4,13 +4,26 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
 import { Genres } from "./hooks/useGenres";
+import PlatformSelector from "./components/PlatformSelector";
+import { Platform } from "./hooks/useGame";
+
+export interface GameQuery {
+  genre: Genres | null;
+  platform: Platform | null;
+}
 
 const App = () => {
   // We have 2 children components here: GenreList and GameGrid.
   // When we select a genre in GenreList,
   // we want to pass that genre to GameGrid.
   // So create a state to hold the selected genre in parent component App.
-  const [selectedGenre, setSelectedGenre] = useState<Genres | null>(null);
+
+  // const [selectedGenre, setSelectedGenre] = useState<Genres | null>(null);
+  // const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+  //   null
+  // );
+
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   // Component hold state should be the one hold it
 
@@ -29,13 +42,19 @@ const App = () => {
         <Show>
           <GridItem area="aside" paddingX={5}>
             <GenreList
-              selectedGenre={selectedGenre}
-              onSelectedGenre={(genre) => setSelectedGenre(genre)}
+              selectedGenre={gameQuery.genre}
+              onSelectedGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
             />
           </GridItem>
         </Show>
         <GridItem area="main">
-          <GameGrid selectedGenre={selectedGenre} />
+          <PlatformSelector
+            selectedPlatform={gameQuery.platform}
+            onSelectedPlatform={(platform) =>
+              setGameQuery({ ...gameQuery, platform })
+            }
+          />
+          <GameGrid gameQuery={gameQuery} />
         </GridItem>
       </Grid>
     </div>
