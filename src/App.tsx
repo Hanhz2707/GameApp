@@ -6,7 +6,13 @@ import { useState } from "react";
 import { Genres } from "./hooks/useGenres";
 
 const App = () => {
+  // We have 2 children components here: GenreList and GameGrid.
+  // When we select a genre in GenreList,
+  // we want to pass that genre to GameGrid.
+  // So create a state to hold the selected genre in parent component App.
   const [selectedGenre, setSelectedGenre] = useState<Genres | null>(null);
+
+  // Component hold state should be the one hold it
 
   return (
     <div>
@@ -22,7 +28,10 @@ const App = () => {
         {/* Aside should only be visible for larger devices */}
         <Show>
           <GridItem area="aside" paddingX={5}>
-            <GenreList onSelectedGenre={(genre) => setSelectedGenre(genre)} />
+            <GenreList
+              selectedGenre={selectedGenre}
+              onSelectedGenre={(genre) => setSelectedGenre(genre)}
+            />
           </GridItem>
         </Show>
         <GridItem area="main">
