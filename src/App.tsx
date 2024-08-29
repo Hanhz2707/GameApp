@@ -40,7 +40,7 @@ const App = () => {
           <NavBar />
         </GridItem>
         {/* Aside should only be visible for larger devices */}
-        <Show>
+        <Show above="lg">
           <GridItem area="aside" paddingX={5}>
             <GenreList
               selectedGenre={gameQuery.genre}
