@@ -15,7 +15,7 @@ const GameGrid = ({ gameQuery }: Props) => {
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
 
   return (
-    <div>
+    <>
       {error && <Text color="red.500">{error}</Text>}
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
@@ -34,7 +34,7 @@ const GameGrid = ({ gameQuery }: Props) => {
           </GameCardContainer>
         ))}
       </SimpleGrid>
-    </div>
+    </>
   );
 };
 
