@@ -14,6 +14,7 @@ export interface Game {
     // It is an array of object where each object has a platform property of type Platform
     parent_platforms: { platform: Platform }[];
     metacritic: number;
+    rating_top: number;
   }
   // Define shape of the response from the API
   // interface FetchGamesResponse {
